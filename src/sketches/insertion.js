@@ -39,12 +39,12 @@ const InsertionSketch = (p) => {
             let current = arr[i];
 
             while (j >= 0 && arr[j] > current) {
-                await p.sleep(20);
+                await p.sleep(40);
                 arr[j + 1] = arr[j];
                 j--;
             }
 
-            await p.sleep(20);
+            await p.sleep(40);
             arr[j + 1] = current;
         }
     };
