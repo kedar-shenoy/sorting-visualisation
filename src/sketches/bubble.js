@@ -58,7 +58,7 @@ const BubbleSortSketch = (p) => {
     };
 
     p.swap = async (arr, i, j) => {
-        await p.sleep(70);
+        await p.sleep(50);
         let temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;

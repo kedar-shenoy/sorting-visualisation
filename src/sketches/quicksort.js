@@ -63,7 +63,7 @@ const QuickSortSketch = (p) => {
     };
 
     p.swap = async (arr, i, j) => {
-        await p.sleep(70);
+        await p.sleep(75);
         let temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;

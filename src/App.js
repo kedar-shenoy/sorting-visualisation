@@ -1,6 +1,17 @@
 import React from "react";
-import { InsertionCanvas, QuickCanvas } from "./components/VisualCanvas";
+import {
+    InsertionCanvas,
+    QuickCanvas,
+    BubbleCanvas,
+} from "./components/VisualCanvas";
 import "./App.css";
+import data from "./data/algo_info";
+
+const algos = {
+    IS: "Insertion Sort",
+    QS: "Quick Sort",
+    BS: "Bubble Sort",
+};
 
 class App extends React.Component {
     constructor(props) {
@@ -11,30 +22,57 @@ class App extends React.Component {
         };
     }
 
-    handleChange = () => {
+    handleChange = (algo) => {
         this.setState({
-            algorithm: this.state.algorithm == "IS" ? "QS" : "IS",
+            algorithm: algo,
         });
     };
 
     render() {
+        let canvas = null;
+        switch (this.state.algorithm) {
+            case "IS":
+                canvas = <InsertionCanvas />;
+                break;
+            case "QS":
+                canvas = <QuickCanvas />;
+                break;
+            case "BS":
+                canvas = <BubbleCanvas />;
+                break;
+        }
+
         return (
             <div className="App">
-                <input
-                    type="button"
-                    className="btn"
-                    value={
-                        this.state.algorithm == "IS"
-                            ? "Change to Quick Sort"
-                            : "Change to Insertion Sort"
-                    }
-                    onClick={this.handleChange}
-                />
-                {this.state.algorithm === "IS" ? (
-                    <InsertionCanvas />
-                ) : (
-                    <QuickCanvas />
-                )}
+                <div className="container-row">
+                    <h3 className="heading">Sorting algorithm visualizer</h3>
+                </div>
+                <div className="container-row">
+                    <div className="container-col">
+                        <p className="current">
+                            Current algorithm: {algos[this.state.algorithm]}
+                        </p>
+                        <button
+                            className="btn"
+                            onClick={(e) => this.handleChange("IS")}
+                        >
+                            Insertion Sort
+                        </button>
+                        <button
+                            className="btn"
+                            onClick={(e) => this.handleChange("QS")}
+                        >
+                            Quick Sort
+                        </button>
+                        <button
+                            className="btn"
+                            onClick={(e) => this.handleChange("BS")}
+                        >
+                            Bubble Sort
+                        </button>
+                    </div>
+                    <div className="canvas">{canvas}</div>
+                </div>
             </div>
         );
     }
