@@ -7,37 +7,27 @@ import {
 import "./App.css";
 import data from "./data/algo_info";
 
-const algos = {
-    IS: "Insertion Sort",
-    QS: "Quick Sort",
-    BS: "Bubble Sort",
-};
+const algos = ["Insertion Sort", "Quick Sort", "Bubble Sort"];
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.myRef = React.createRef();
         this.state = {
-            algorithm: "IS",
+            algorithm: 0,
         };
     }
-
-    handleChange = (algo) => {
-        this.setState({
-            algorithm: algo,
-        });
-    };
 
     render() {
         let canvas = null;
         switch (this.state.algorithm) {
-            case "IS":
+            case 0:
                 canvas = <InsertionCanvas />;
                 break;
-            case "QS":
+            case 1:
                 canvas = <QuickCanvas />;
                 break;
-            case "BS":
+            case 2:
                 canvas = <BubbleCanvas />;
                 break;
         }
@@ -52,24 +42,26 @@ class App extends React.Component {
                         <p className="current">
                             Current algorithm: {algos[this.state.algorithm]}
                         </p>
-                        <button
-                            className="btn"
-                            onClick={(e) => this.handleChange("IS")}
-                        >
-                            Insertion Sort
-                        </button>
-                        <button
-                            className="btn"
-                            onClick={(e) => this.handleChange("QS")}
-                        >
-                            Quick Sort
-                        </button>
-                        <button
-                            className="btn"
-                            onClick={(e) => this.handleChange("BS")}
-                        >
-                            Bubble Sort
-                        </button>
+                        {algos.map((algo, i) => {
+                            return (
+                                <button
+                                    className="btn"
+                                    onClick={(e) =>
+                                        this.setState({ algorithm: i })
+                                    }
+                                    style={
+                                        this.state.algorithm === i
+                                            ? {
+                                                  backgroundColor: "#2c3e50",
+                                                  color: "#fff",
+                                              }
+                                            : {}
+                                    }
+                                >
+                                    {algo}
+                                </button>
+                            );
+                        })}
                     </div>
                     <div className="canvas">{canvas}</div>
                 </div>
