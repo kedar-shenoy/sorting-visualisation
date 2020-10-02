@@ -4,9 +4,9 @@ const QuickSortSketch = (p) => {
 
     p.setup = () => {
         p.createCanvas(p.windowWidth * 0.75, p.windowHeight * 0.75);
-        bar_width = (p.windowWidth * 0.75) / 25;
+        bar_width = (p.windowWidth * 0.75) / 50;
 
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 50; i++) {
             heights.push(p.random(p.windowHeight * 0.75));
         }
 
@@ -30,20 +30,20 @@ const QuickSortSketch = (p) => {
 
     p.windowResized = () => {
         p.resizeCanvas(p.windowWidth * 0.75, p.windowHeight * 0.75);
-        bar_width = (p.windowWidth * 0.75) / 25;
+        bar_width = (p.windowWidth * 0.75) / 50;
     };
 
     //quck sort algorithm
     p.quickSort = async (arr, low, high) => {
         if (low <= high) {
             let pivot = await p.partition(arr, low, high);
-            Promise.all([
-                p.quickSort(arr, low, pivot - 1),
-                p.quickSort(arr, pivot + 1, high),
-            ]);
+            // Promise.all([
+            //     p.quickSort(arr, low, pivot - 1),
+            //     p.quickSort(arr, pivot + 1, high),
+            // ]);
 
-            // await quickSort(arr, low, pivot - 1);
-            // await quickSort(arr, pivot + 1, high);
+            await p.quickSort(arr, low, pivot - 1);
+            await p.quickSort(arr, pivot + 1, high);
         }
     };
 

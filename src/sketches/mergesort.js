@@ -4,9 +4,9 @@ const MergeSortSketch = (p) => {
 
     p.setup = () => {
         p.createCanvas(p.windowWidth * 0.75, p.windowHeight * 0.75);
-        bar_width = (p.windowWidth * 0.75) / 25;
+        bar_width = (p.windowWidth * 0.75) / 50;
 
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 50; i++) {
             heights.push(p.random(p.windowHeight * 0.75));
         }
 
@@ -30,7 +30,7 @@ const MergeSortSketch = (p) => {
 
     p.windowResized = () => {
         p.resizeCanvas(p.windowWidth * 0.75, p.windowHeight * 0.75);
-        bar_width = (p.windowWidth * 0.75) / 25;
+        bar_width = (p.windowWidth * 0.75) / 50;
     };
 
     //merge sort algorithm
