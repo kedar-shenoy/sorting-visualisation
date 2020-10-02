@@ -3,6 +3,7 @@ import p5 from "p5";
 import InsertionSketch from "../sketches/insertion";
 import QuickSortSketch from "../sketches/quicksort";
 import BubbleSortSketch from "../sketches/bubble";
+import MergeSortSketch from "../sketches/mergesort";
 
 export class InsertionCanvas extends React.Component {
     constructor(props) {
@@ -42,6 +43,21 @@ export class BubbleCanvas extends React.Component {
 
     componentDidMount() {
         this.myP5 = new p5(BubbleSortSketch, this.myRef.current);
+    }
+
+    render() {
+        return <div ref={this.myRef}></div>;
+    }
+}
+
+export class MergeCanvas extends React.Component {
+    constructor(props) {
+        super(props);
+        this.myRef = React.createRef();
+    }
+
+    componentDidMount() {
+        this.myP5 = new p5(MergeSortSketch, this.myRef.current);
     }
 
     render() {
