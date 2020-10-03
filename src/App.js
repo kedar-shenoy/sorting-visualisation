@@ -4,11 +4,18 @@ import {
     QuickCanvas,
     BubbleCanvas,
     MergeCanvas,
+    HeapCanvas,
 } from "./components/VisualCanvas";
 import "./App.css";
 import data from "./data/algo_info";
 
-const algos = ["Insertion Sort", "Quick Sort", "Bubble Sort", "Merge Sort"];
+const algos = [
+    "Insertion Sort",
+    "Quick Sort",
+    "Bubble Sort",
+    "Merge Sort",
+    "Heap Sort",
+];
 
 class App extends React.Component {
     constructor(props) {
@@ -33,6 +40,9 @@ class App extends React.Component {
                 break;
             case 3:
                 canvas = <MergeCanvas />;
+                break;
+            case 4:
+                canvas = <HeapCanvas />;
                 break;
         }
 
